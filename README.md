@@ -1,5 +1,5 @@
 # jQuery Select, is a simple plugin.
-# No mystery, no secret.
+No mystery, no secret.
 
 -----------------
 
