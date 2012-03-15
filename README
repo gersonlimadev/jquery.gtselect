@@ -2,6 +2,6 @@ Hello World
 jQuery Select is a simple plugin.
 ===================
 
-How can i use?
+How to use
 $('select').selectgt();
 
