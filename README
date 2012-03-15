@@ -1,1 +1,7 @@
-Hello World
+<h1>Hello World</h1>
+<p>jQuery Select is a simple plugin.</p>
+<hr>
+<h2>How can i use?</h2>
+<pre>
+	<code>$('select').selectgt();</code>
+</pre>

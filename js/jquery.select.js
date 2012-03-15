@@ -1,7 +1,7 @@
 (function($){
 
 	
-	$.fn.selectGt = function(){
+	$.fn.selectgt = function(){
 		
 		
 		
