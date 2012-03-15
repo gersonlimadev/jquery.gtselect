@@ -1,0 +1,39 @@
+/* 
+jQuery.selectgt
+Author: @gersonthiago - gersonthiago.com
+*/
+.boxSelect {
+	position:relative;
+	background:#fff;
+	height:18px;
+	border:1px solid #899399;
+	padding:3px;
+	cursor:pointer;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}
+	.boxSelect .activeOption{
+		text-indent:6px;
+		line-height:18px;
+	}
+	.boxSelect ul{
+		position:absolute;
+		left:0; top:0;
+		display:none;
+	}
+		.boxSelect ul li{
+			padding:4px 0 4px 6px;
+		}
+		.boxSelect ul li.active{color:#757575;}
+	.boxSelect .arrow{
+		position:absolute;
+		right:10px; top:9px;
+		display:block;
+		overflow:hidden;
+		text-indent:-9999em;
+		width:11px; height:7px;
+	}
+		.boxSelect .arrowDown{
+			background:url(../images/arrowDown.png) no-repeat;
+		}

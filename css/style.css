@@ -87,8 +87,29 @@ hr {
 input, select {
     vertical-align:middle;
 }
-* {margin:0; padding:0; text-decoration:none; list-style:none;}
+* {margin:0; padding:0; text-decoration:none; list-style:none; font-weight:normal;}
+
+/* site */
+body {
+    margin:5em;
+    font-family: 'Pontano Sans', sans-serif;
+    font-size:14px;
+    color:#000;
+    background:url(../images/bg.png) repeat;
+}
+    h1 {
+        font-family: 'Imprima', sans-serif; 
+        font-size:60px;
+        margin-bottom:70px; 
+    }
+    h2 {
+        font-family: 'Imprima', sans-serif; 
+        font-size:30px;
+        margin-bottom:15px; 
+    }
+    select {width:250px;}
 
 
-/** site */
+
+
 
