@@ -3,7 +3,7 @@ No mystery, no secret.
 
 -----------------
 
-### How to use:  `$('select').selectgt();`
+### How to use:  `$('select').gtselect();`
 
 -----------------
 
