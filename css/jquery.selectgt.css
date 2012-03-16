@@ -17,14 +17,27 @@ Author: @gersonthiago - gersonthiago.com
 		text-indent:6px;
 		line-height:18px;
 	}
-	.boxSelect ul{
+	.boxSelect .listSelect{
 		position:absolute;
-		left:0; top:0;
+		left:-1px; top:21px;
 		display:none;
+		background:#fff;
+		width:100%;
+		border-left:1px solid #899399;
+		border-right:1px solid #899399;
+		border-bottom:1px solid #899399;
+		-webkit-border-bottom-right-radius:5px;
+		-webkit-border-bottom-left-radius:5px;
+		-moz-border-radius-bottomright:5px;
+		-moz-border-radius-bottomleft:5px;
+		border-bottom-right-radius:5px;
+		border-bottom-left-radius:5px;
 	}
 		.boxSelect ul li{
 			padding:4px 0 4px 6px;
+			text-indent:3px;
 		}
+		.boxSelect ul li:hover{background:#ccc;}
 		.boxSelect ul li.active{color:#757575;}
 	.boxSelect .arrow{
 		position:absolute;
@@ -34,6 +47,5 @@ Author: @gersonthiago - gersonthiago.com
 		text-indent:-9999em;
 		width:11px; height:7px;
 	}
-		.boxSelect .arrowDown{
-			background:url(../images/arrowDown.png) no-repeat;
-		}
+		.boxSelect .arrowDown{background:url(../images/arrowDown.png) no-repeat;}
+		.boxSelect .arrowUp{background:url(../images/arrowUp.png) no-repeat;}

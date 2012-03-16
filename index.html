@@ -18,53 +18,40 @@
 
 	<section id="container">
 		
-		<h1>jQuery gtSelect - is a simple plugin</h1>
+		<header>
+			<h1>jQuery gtSelect - is a simple plugin</h1>
+			<p>No mystery, no secret.</p>
+		</header>
 
-		<form action="/" method="post">
+		<section id="content">
 			
-			<h2>See the example:</h2>
-			<select id="favorite_place" name="favorite_place">
-				<option value="">Please select your favorite place</option>
-				<option value="sao-paulo">São Paulo</option>
-				<option value="rio-de-janeiro">Rio de Janeiro</option>
-				<option value="recife">Recife</option>
-				<option value="porto-alegre">Porto Alegre</option>
-				<option value="salvador">Salvador</option>
-			</select>
-
-			<br/><br/>
-
-			<select id="favorite_day" name="favorite_day">
-				<option value="">Please select your favorite day</option>
-				<option value="sunday">Sunday</option>
-				<option value="monday">Monday</option>
-				<option value="tuesday" checked="checked">Tuesday</option>
-				<option value="wednesday">Wednesday</option>
-				<option value="thursday">Thursday</option>
-				<option value="friday">Friday</option>
-				<option value="saturday">Saturday</option>
-			</select>
-
-
-
-			<br/><br/><br/>
-
-
-			<div class="boxSelect">
-				<p class="activeOption">Please select your favorite place</p>
-				<ul>
-					<li data-val="" class="active">Please select your favorite place</li>
-					<li data-val="sao-paulo">São Paulo</li>
-					<li data-val="rio-de-janeiro">Rio de Janeiro</li>
-					<li data-val="recife">Recife</li>
-					<li data-val="porto-alegre">Porto Alegre</li>
-					<li data-val="salvador">Salvador</li>
-				</ul>
-				<span class="arrow arrowDown">Down</span>
-				<input type="hidden" name="" value="" />
+			<div class="box">
+				<h2>What to include:</h2> 
+				<p><code>&lt;link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" /&gt;</code></p>
+				<p><code>&lt;script type="text/javascript" src="js/jquery.gtselect.js"&gt;&lt;/script&gt;</code></p>
 			</div>
-			
-		</form>
+
+
+			<div class="box">
+				<h2>How to use:</h2> 
+				<p><code>$('select').selectgt();</code></p>
+			</div>
+
+			<form action="/" method="post">
+				
+				<h2>See the example:</h2>
+				<select id="favorite_place" name="favorite_place">
+					<option value="">Please select your favorite place</option>
+					<option value="sao-paulo">São Paulo</option>
+					<option value="rio-de-janeiro">Rio de Janeiro</option>
+					<option value="recife">Recife</option>
+					<option value="porto-alegre">Porto Alegre</option>
+					<option value="salvador">Salvador</option>
+				</select>
+				
+			</form>
+
+		</section>
 		
 	</section>
 
@@ -74,7 +61,7 @@
 	<script type="text/javascript" src="js/jquery.gtselect.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('select:last').gtselect({speed:5000});
+			$('select').gtselect({speed:300,width:250});
 		});
 	</script>
 </body>
