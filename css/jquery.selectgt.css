@@ -2,7 +2,7 @@
 jQuery.selectgt
 Author: @gersonthiago - gersonthiago.com
 */
-.boxSelect {
+.gtSelect {
 	position:relative;
 	background:#fff;
 	height:18px;
@@ -13,11 +13,11 @@ Author: @gersonthiago - gersonthiago.com
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 }
-	.boxSelect .activeOption{
+	.gtSelect .activeOption{
 		text-indent:6px;
 		line-height:18px;
 	}
-	.boxSelect .listSelect{
+	.gtSelect .listSelect{
 		position:absolute;
 		left:-1px; top:21px;
 		display:none;
@@ -33,13 +33,13 @@ Author: @gersonthiago - gersonthiago.com
 		border-bottom-right-radius:5px;
 		border-bottom-left-radius:5px;
 	}
-		.boxSelect ul li{
+		.gtSelect ul li{
 			padding:4px 0 4px 6px;
 			text-indent:3px;
 		}
-		.boxSelect ul li:hover{background:#ccc;}
-		.boxSelect ul li.active{color:#757575;}
-	.boxSelect .arrow{
+		.gtSelect ul li:hover{background:#ccc;}
+		.gtSelect ul li.active{color:#757575;}
+	.gtSelect .arrow{
 		position:absolute;
 		right:10px; top:9px;
 		display:block;
@@ -47,5 +47,5 @@ Author: @gersonthiago - gersonthiago.com
 		text-indent:-9999em;
 		width:11px; height:7px;
 	}
-		.boxSelect .arrowDown{background:url(../images/arrowDown.png) no-repeat;}
-		.boxSelect .arrowUp{background:url(../images/arrowUp.png) no-repeat;}
+		.gtSelect .arrowDown{background:url(../images/arrowDown.png) no-repeat;}
+		.gtSelect .arrowUp{background:url(../images/arrowUp.png) no-repeat;}

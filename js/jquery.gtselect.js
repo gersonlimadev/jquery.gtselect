@@ -15,8 +15,8 @@
 			this.options = $.extend({}, defaults, options);
 
 			// create element boxSelect
-			this.el.wrap('<div class="boxSelect" data-status="disabled">');
-			this.select = this.el.parent('.boxSelect');
+			this.el.wrap('<div class="gtSelect" data-status="disabled">');
+			this.select = this.el.parent('.gtSelect');
 			this.el.css('display','none');
 			
 			// change attr name
@@ -73,7 +73,16 @@
 						target.find('.listSelect').slideUp(opts.speed);
 						target.find('.arrow').removeClass('arrowUp').addClass('arrowDown').text('Down');
 						if(e.target.nodeName.toLowerCase()=='li'){
-							changeValue(e.target.getAttribute('data-val'),e.target.firstChild.textContent)
+							
+							// if linkRedirect is true, redirect
+							if(opts.linkRedirect){
+								if(e.target.getAttribute('data-val')!=""){
+									location.href = e.target.getAttribute('data-val');
+								}
+							} else {
+								changeValue(e.target.getAttribute('data-val'),e.target.firstChild.textContent)
+							}
+
 						}
 						gtSelect.attr('data-status','disabled');
 					}

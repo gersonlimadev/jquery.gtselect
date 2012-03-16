@@ -98,6 +98,7 @@ body {
     /*background:url(../images/bg.png) repeat;*/
 }
     
+    a{color:#000; text-decoration:underline;}
     h1 {
         font-family: 'Imprima', sans-serif; 
         font-size:60px;
@@ -123,7 +124,6 @@ body {
     select {width:250px;}
 
     .box {margin-bottom:50px;}
-    .box a{color:#000; text-decoration:underline;}
     .box p{line-height:30px;}
 
 

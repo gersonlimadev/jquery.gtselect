@@ -3,6 +3,10 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>Plugin jQuery gtSelect</title>
+
+	<meta property="og:title" content="Plugin jQuery gtSelect" />
+	<meta property="og:description" content="gtSelect is a simple plugin what add style to your select easily, created by Gerson Thiago." />
+	<meta property="og:url" content="http://www.gersonthiago.com/labs/jquery-gtselect/" />
 		
 	<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
@@ -10,7 +14,7 @@
 	<link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" />
 
 	<!-- syntax highlighter -->
-	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+	<link type="text/css" rel="stylesheet" href="css/syntax/shCoreDefault.css"/>
 	
 	<link href='http://fonts.googleapis.com/css?family=Imprima|Pontano+Sans' rel='stylesheet' type='text/css'>
 
@@ -76,12 +80,13 @@
 				<h2>Params:</h2> 
 				<pre class="brush: js;">
 					$('select').selectgt({
-						speed: 500, 		 // speed dropdown list
-						width : 250,		 // width box select
-						linkRedirect : false // if true, redirect page to value of the selected option tag
-					});
-				</pre>
+						speed: 200, 		 // speed dropdown list
+						width : 300,		 // width box select
+						linkRedirect : false // if true, redirect page using value of the selected option tag
+					});</pre>
 			</div>
+
+			<p class="credits">Created by <a href="http://www.gersonthiago.com">Gerson Thiago</a> &copy; 2012</p>
 
 			
 
@@ -95,15 +100,15 @@
 	<script type="text/javascript" src="js/jquery.gtselect.js"></script>
 
 	<!-- syntax highlighter -->
-	<script type="text/javascript" src="js/shCore.js"></script>
-	<script type="text/javascript" src="js/shBrushJScript.js"></script>
-	<script type="text/javascript" src="js/shBrushCss.js"></script>
-	<script type="text/javascript" src="js/shBrushXml.js"></script>
+	<script type="text/javascript" src="js/syntax/shCore.js"></script>
+	<script type="text/javascript" src="js/syntax/shBrushJScript.js"></script>
+	<script type="text/javascript" src="js/syntax/shBrushCss.js"></script>
+	<script type="text/javascript" src="js/syntax/shBrushXml.js"></script>
 	
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$('select').gtselect({speed:300,width:250});
+			$('select').gtselect({speed:300,width:250,linkRedirect:false});
 		});
 		SyntaxHighlighter.all();
 	</script>
