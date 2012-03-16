@@ -1,7 +1,7 @@
 (function($){
 
 	
-	$.fn.selectgt = function(options){
+	$.fn.gtselect = function(options){
 
 		var defaults = {
 			speed : 2000,
