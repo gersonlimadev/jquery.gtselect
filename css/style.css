@@ -95,37 +95,36 @@ body {
     font-family: 'Pontano Sans', sans-serif;
     font-size:14px;
     color:#000;
-    background:url(../images/bg.png) repeat;
+    /*background:url(../images/bg.png) repeat;*/
 }
     
     h1 {
         font-family: 'Imprima', sans-serif; 
         font-size:60px;
     }
-    
-    header {margin-bottom:70px;}
-        header p{
-            font-size:25px;
-            margin-top:20px;
-        }
-    
     h2 {
         font-family: 'Imprima', sans-serif; 
         font-size:30px;
         margin-bottom:15px; 
     }
+    h5 {
+        font-family: 'Imprima', sans-serif; 
+        font-size:20px;
+        margin-bottom:15px; 
+    }
+    
+    header {margin-bottom:50px;}
+        header p{
+            font-size:25px;
+            margin-top:20px;
+        }
+    form {margin-bottom:50px;}
+    
     select {width:250px;}
 
     .box {margin-bottom:50px;}
+    .box a{color:#000; text-decoration:underline;}
     .box p{line-height:30px;}
-    .box code{
-        background:#d9d9d9;
-        padding:5px 10px;
-        border:1px solid #899399;
-        border-radius:5px;
-        -moz-border-radius:5px;
-        -webkit-border-radius:5px;
-    }
 
 
 

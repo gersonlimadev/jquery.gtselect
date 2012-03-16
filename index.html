@@ -8,6 +8,10 @@
 
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" />
+
+	<!-- syntax highlighter -->
+	<link type="text/css" rel="stylesheet" href="css/shCoreDefault.css"/>
+	
 	<link href='http://fonts.googleapis.com/css?family=Imprima|Pontano+Sans' rel='stylesheet' type='text/css'>
 
 	
@@ -25,18 +29,6 @@
 
 		<section id="content">
 			
-			<div class="box">
-				<h2>What to include:</h2> 
-				<p><code>&lt;link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" /&gt;</code></p>
-				<p><code>&lt;script type="text/javascript" src="js/jquery.gtselect.js"&gt;&lt;/script&gt;</code></p>
-			</div>
-
-
-			<div class="box">
-				<h2>How to use:</h2> 
-				<p><code>$('select').selectgt();</code></p>
-			</div>
-
 			<form action="/" method="post">
 				
 				<h2>See the example:</h2>
@@ -51,6 +43,48 @@
 				
 			</form>
 
+			<div class="box">
+				<h2>What to include:</h2> 
+
+				<h5>javascript</h5>
+				<p>This plugin need <a href="http://www.jquery.com">jQuery Library</a></p>
+				<pre class="brush: js;">&lt;script type="text/javascript" src="js/jquery.gtselect.js"&gt;&lt;/script&gt;</pre>
+
+				<h5>css</h5>
+				<pre class="brush: css;">&lt;link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" /&gt;</pre>
+				
+				
+				<h5>html</h5>
+				<pre class="brush: xml;">
+					&lt;select id="favorite_place" name="favorite_place">
+						&lt;option value="">Please select your favorite place&lt;/option>
+						&lt;option value="sao-paulo">São Paulo&lt;/option>
+						&lt;option value="rio-de-janeiro">Rio de Janeiro&lt;/option>
+						&lt;option value="recife">Recife&lt;/option>
+						&lt;option value="porto-alegre">Porto Alegre&lt;/option>
+						&lt;option value="salvador">Salvador&lt;/option>
+					&lt;/select></pre>
+			</div>
+
+
+			<div class="box">
+				<h2>How to use:</h2> 
+				<pre class="brush: js;">$('select').selectgt();</pre>
+			</div>
+
+			<div class="box">
+				<h2>Params:</h2> 
+				<pre class="brush: js;">
+					$('select').selectgt({
+						speed: 500, 		 // speed dropdown list
+						width : 250,		 // width box select
+						linkRedirect : false // if true, redirect page to value of the selected option tag
+					});
+				</pre>
+			</div>
+
+			
+
 		</section>
 		
 	</section>
@@ -59,10 +93,19 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
 	<script type="text/javascript" src="js/jquery.gtselect.js"></script>
+
+	<!-- syntax highlighter -->
+	<script type="text/javascript" src="js/shCore.js"></script>
+	<script type="text/javascript" src="js/shBrushJScript.js"></script>
+	<script type="text/javascript" src="js/shBrushCss.js"></script>
+	<script type="text/javascript" src="js/shBrushXml.js"></script>
+	
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('select').gtselect({speed:300,width:250});
 		});
+		SyntaxHighlighter.all();
 	</script>
 </body>
 </html>
