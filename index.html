@@ -13,10 +13,18 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" />
 
-	<!-- syntax highlighter -->
-	<link type="text/css" rel="stylesheet" href="css/syntax/shCoreDefault.css"/>
+	<!-- syntax -->
+	<link rel="stylesheet" href="css/syntax/sh.css" type="text/css" media="screen" />
 	
 	<link href='http://fonts.googleapis.com/css?family=Imprima|Pontano+Sans' rel='stylesheet' type='text/css'>
+
+
+	<!-- syntax -->
+	<script type="text/javascript" src="js/syntax/sh_main.js"></script>
+	<script type="text/javascript" src="js/syntax/sh_html.js"></script>
+	<script type="text/javascript" src="js/syntax/sh_css.js"></script>
+	<script type="text/javascript" src="js/syntax/sh_js.js"></script>
+	<script type="text/javascript" src="js/syntax/sh.js"></script>
 
 	
 </head>
@@ -52,38 +60,40 @@
 
 				<h5>javascript</h5>
 				<p>This plugin need <a href="http://www.jquery.com">jQuery Library</a></p>
-				<pre class="brush: js;">&lt;script type="text/javascript" src="js/jquery.gtselect.js"&gt;&lt;/script&gt;</pre>
+				<pre class="sh_javascript">&lt;script type="text/javascript" src="js/jquery.gtselect.js"&gt;&lt;/script&gt;</pre>
+				<br/>
 
 				<h5>css</h5>
-				<pre class="brush: css;">&lt;link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" /&gt;</pre>
-				
+				<pre class="sh_css">&lt;link rel="stylesheet" href="css/jquery.selectgt.css" type="text/css" media="screen" /&gt;</pre>
+				<br/>
 				
 				<h5>html</h5>
-				<pre class="brush: xml;">
-					&lt;select id="favorite_place" name="favorite_place">
-						&lt;option value="">Please select your favorite place&lt;/option>
-						&lt;option value="sao-paulo">São Paulo&lt;/option>
-						&lt;option value="rio-de-janeiro">Rio de Janeiro&lt;/option>
-						&lt;option value="recife">Recife&lt;/option>
-						&lt;option value="porto-alegre">Porto Alegre&lt;/option>
-						&lt;option value="salvador">Salvador&lt;/option>
-					&lt;/select></pre>
+<pre class="sh_html">
+&lt;select id="favorite_place" name="favorite_place"&gt;
+	&lt;option value=""&gt;Please select your favorite place&lt;/option&gt;
+	&lt;option value="sao-paulo"&gt;São Paulo&lt;/option&gt;
+	&lt;option value="rio-de-janeiro"&gt;Rio de Janeiro&lt;/option&gt;
+	&lt;option value="recife"&gt;Recife&lt;/option&gt;
+	&lt;option value="porto-alegre"&gt;Porto Alegre&lt;/option&gt;
+	&lt;option value="salvador"&gt;Salvador&lt;/option&gt;
+&lt;/select></pre>
 			</div>
 
 
 			<div class="box">
 				<h2>How to use:</h2> 
-				<pre class="brush: js;">$('select').selectgt();</pre>
+				<pre class="sh_javascript">$('select').selectgt();</pre>
 			</div>
 
 			<div class="box">
 				<h2>Params:</h2> 
-				<pre class="brush: js;">
-					$('select').selectgt({
-						speed: 200, 		 // speed dropdown list
-						width : 300,		 // width box select
-						linkRedirect : false // if true, redirect page using value of the selected option tag
-					});</pre>
+<pre class="sh_javascript">
+$('select').selectgt({
+	speed: 200, 		 // speed dropdown list
+	width : 300,		 // width box select
+	linkRedirect : false 	// if true, redirect page using value of the selected option tag
+});
+</pre>
 			</div>
 
 			<div class="box">
@@ -103,23 +113,19 @@
     
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
-	<script type="text/javascript" src="js/jquery.gtselect.pack.js"></script>
 
-	<!-- syntax highlighter -->
-	<script type="text/javascript" src="js/syntax/shCore.js"></script>
-	<script type="text/javascript" src="js/syntax/shBrushJScript.js"></script>
-	<script type="text/javascript" src="js/syntax/shBrushCss.js"></script>
-	<script type="text/javascript" src="js/syntax/shBrushXml.js"></script>
+
+	<script type="text/javascript" src="js/jquery.gtselect.pack.js"></script>
 	
 
 	<script type="text/javascript">
 		
+		window.onload = function(){ sh_highlightDocument(); }
+
 		$(document).ready(function(){
 			$('select').gtselect({speed:300,width:250,linkRedirect:false});
 		});
 		
-		SyntaxHighlighter.all();
-
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-10036034-1']);
 		_gaq.push(['_trackPageview']);

@@ -1,3 +1,8 @@
+/**
+ * jQuery gtSelect plugin
+ * @author Gerson Thiago <http://www.gersonthiago.com>
+**/
+
 (function($){
 
 	
@@ -10,13 +15,12 @@
 		}, zIndex = 100;
 
 		function boxGtSelect(el, options){
-			
 			this.el = $(el);
 			this.options = $.extend({}, defaults, options);
 
 			// create element boxSelect
-			this.el.wrap('<div class="gtSelect" data-status="disabled">');
-			this.select = this.el.parent('.gtSelect');
+			this.el.wrap('<div class="gtSelect" data-status="disabled" />');
+			this.select = $(el).parent('.gtSelect');
 			this.el.css('display','none');
 			
 			// change attr name
@@ -43,7 +47,7 @@
 				'<span class="arrow arrowDown">Down</span>'+
 				'<input type="hidden" name="'+attrName+'" value="'+fieldChecked.value+'" />';
 			this.select.css({'width':this.options.width,'zIndex':zIndex}).append(htmlSelect);
-
+			
 			this.appendEvents();
 
 			zIndex--;
@@ -60,31 +64,28 @@
 				gtSelect.find('input').val(value);
 				gtSelect.find('.activeOption').text(text);
 			}
-
-
+			
 			gtSelect.bind('mouseenter mouseleave click', function(e){
-				var target = $(this), status = gtSelect.attr('data-status');
+				var target = $(this), status = target.attr('data-status');
 				if(e.type=='click'){
 					if(status=='disabled'){
 						target.find('.arrow').removeClass('arrowDown').addClass('arrowUp').text('Up');
 						target.find('.listSelect').slideDown(opts.speed);
-						gtSelect.attr('data-status','enabled');
+						target.attr('data-status','enabled');
 					} else {
 						target.find('.listSelect').slideUp(opts.speed);
 						target.find('.arrow').removeClass('arrowUp').addClass('arrowDown').text('Down');
 						if(e.target.nodeName.toLowerCase()=='li'){
-							
 							// if linkRedirect is true, redirect
 							if(opts.linkRedirect){
 								if(e.target.getAttribute('data-val')!=""){
 									location.href = e.target.getAttribute('data-val');
 								}
 							} else {
-								changeValue(e.target.getAttribute('data-val'),e.target.firstChild.textContent)
+								changeValue($(e.target).attr('data-val'),$(e.target).text());
 							}
-
 						}
-						gtSelect.attr('data-status','disabled');
+						target.attr('data-status','disabled');
 					}
 				} else if(e.type=='mouseenter'){
 					if(status=='enabled'){ clearTimeout(timeGtSelect); }
@@ -96,7 +97,7 @@
 					}
 				}
 			});
-						
+
 		}
 
 		return this.each(function(){
