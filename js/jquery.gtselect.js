@@ -32,10 +32,9 @@
 				field = this.select.find('option'), 
 				fields = '', 
 				fieldChecked = {
-					value : '',
+					value : field[0].getAttribute('value'),
 					text : field[0].text
 				};
-			
 			for(var i=0; i<field.length; i++){
 				if(field[i].getAttribute('checked')!=null){ fieldChecked = {value:field[i].getAttribute('value'),text:field[i].text}; }
 				fields += '<li data-val="'+field[i].getAttribute('value')+'">'+field[i].text+'</li>';
