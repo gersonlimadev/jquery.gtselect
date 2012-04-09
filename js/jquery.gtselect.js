@@ -36,7 +36,7 @@
 					text : field[0].text
 				};
 			for(var i=0; i<field.length; i++){
-				if(field[i].getAttribute('checked')!=null){ fieldChecked = {value:field[i].getAttribute('value'),text:field[i].text}; }
+				if(field[i].getAttribute('selected')!=null){ fieldChecked = {value:field[i].getAttribute('value'),text:field[i].text}; }
 				fields += '<li data-val="'+field[i].getAttribute('value')+'">'+field[i].text+'</li>';
 			}
 
