@@ -11,6 +11,7 @@
 		var defaults = {
 			speed : 200,
 			width : 300,
+			height : null,
 			linkRedirect : false
 		}, zIndex = 100;
 
@@ -40,12 +41,19 @@
 				fields += '<li data-val="'+field[i].getAttribute('value')+'">'+field[i].text+'</li>';
 			}
 
+			// verify height
+			var cssHeight = '';
+			if(!(this.options.height==null)){
+				var cssHeight = ' height:'+this.options.height+'px; overflow-x:hidden; overflow-y:auto;';
+			}
+
 			// the new html box select
 			htmlSelect += '<p class="activeOption">'+fieldChecked.text+'</p>'+
-				'<div class="listSelect" style="width:'+this.options.width+'"><ul>'+fields+'</ul></div>'+
+				'<div class="listSelect" style="'+cssHeight+'"><ul>'+fields+'</ul></div>'+
 				'<span class="arrow arrowDown">Down</span>'+
 				'<input type="hidden" name="'+attrName+'" value="'+fieldChecked.value+'" />';
-			this.select.css({'width':this.options.width,'zIndex':zIndex}).append(htmlSelect);
+			
+			this.select.css({'width':this.options.width+'px','zIndex':zIndex}).append(htmlSelect);
 			
 			this.appendEvents();
 

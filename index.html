@@ -41,7 +41,15 @@
 					<option value="rio-de-janeiro">Rio de Janeiro</option>
 					<option value="recife">Recife</option>
 					<option value="porto-alegre">Porto Alegre</option>
-					<option value="salvador">Salvador</option>
+					<option value="acre">Acre</option>
+					<option value="santa-catarina">Santa Catarina</option>
+					<option value="belo-horizonte">Belo Horizonte</option>
+					<option value="sergipe">Sergipe</option>
+					<option value="bahia">Bahia</option>
+					<option value="piaui">Piauí</option>
+					<option value="amazonas">Amazonas</option>
+					<option value="roraima">Roraima</option>
+					<option value="maranhao">Maranhão</option>
 				</select>
 				
 			</form>
@@ -110,14 +118,14 @@ $('select').gtselect({
 	<script type="text/javascript" src="js/syntax/sh_js.js"></script>
 	<script type="text/javascript" src="js/syntax/sh.js"></script>
 
-	<script type="text/javascript" src="js/jquery.gtselect.pack.js"></script>
+	<script type="text/javascript" src="js/jquery.gtselect.js"></script>
 
 	<script type="text/javascript">
 		
 		window.onload = function(){ sh_highlightDocument(); }
 
 		$(document).ready(function(){
-			$('select').gtselect({speed:300,width:250,linkRedirect:false});
+			$('select').gtselect({speed:300,width:250,height:100,linkRedirect:false});
 		});
 		
 		var _gaq = _gaq || [];
