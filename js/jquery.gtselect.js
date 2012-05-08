@@ -5,7 +5,6 @@
 
 (function($){
 
-	
 	$.fn.gtselect = function(options){
 
 		var defaults = {
