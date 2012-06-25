@@ -88,10 +88,11 @@
 				<h2>Params:</h2> 
 <pre class="sh_javascript">
 $('select').gtselect({
-	speed: 200, 		 // speed dropdown list
-	width : 300,		 // width box select
-	height: null,        // height box select
-	linkRedirect : false 	// if true, redirect page using value of the selected option tag
+	speed: 200,		// speed dropdown list
+	width : 300,		// width box select
+	height: null,		// height box select
+	linkRedirect : false, 	// if true, redirect page using value of the selected option tag
+	change : function(value, text){  } 	// callback function to change event
 });
 </pre>
 			</div>
