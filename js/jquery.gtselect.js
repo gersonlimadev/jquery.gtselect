@@ -1,6 +1,6 @@
 /**
  * jQuery gtSelect plugin
- * @author Gerson Thiago <http://www.gersonthiago.com>
+ * @author Gerson Thiago <http://www.gersonthiago.com> <https://github.com/gersonthiago/jquery.gtselect>
 **/
 
 (function($){
@@ -70,7 +70,7 @@
 
 			var changeValue = function(value, text){
 				if( opts.change !== undefined ){
-					opts.change(value, text);
+					opts.change(value, text, gtSelect);
 				}
 				gtSelect.find('input').val(value);
 				gtSelect.find('.activeOption').text(text);
