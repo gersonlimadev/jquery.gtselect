@@ -11,7 +11,8 @@
 			speed : 200,
 			width : 300,
 			height : null,
-			linkRedirect : false
+			linkRedirect : false,
+			change : undefined
 		}, zIndex = 100;
 
 		function boxGtSelect(el, options){
@@ -68,6 +69,9 @@
 				timeGtSelect = '';
 
 			var changeValue = function(value, text){
+				if( opts.change !== undefined ){
+					opts.change(value, text);
+				}
 				gtSelect.find('input').val(value);
 				gtSelect.find('.activeOption').text(text);
 			}
