@@ -69,11 +69,11 @@
 				timeGtSelect = '';
 
 			var changeValue = function(value, text){
+				gtSelect.find('input').val(value);
+				gtSelect.find('.activeOption').text(text);
 				if( opts.change !== undefined ){
 					opts.change(value, text, gtSelect);
 				}
-				gtSelect.find('input').val(value);
-				gtSelect.find('.activeOption').text(text);
 			}
 			
 			gtSelect.bind('mouseenter mouseleave click', function(e){
