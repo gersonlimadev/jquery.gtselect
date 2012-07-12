@@ -69,7 +69,7 @@
 				timeGtSelect = '';
 
 			var changeValue = function(value, text){
-				gtSelect.find('input').val(value);
+				gtSelect.find('select option[value="'+value+'"]').attr('selected','selected');
 				gtSelect.find('.activeOption').text(text);
 				if( opts.change !== undefined ){
 					opts.change(value, text, gtSelect);
