@@ -3,7 +3,7 @@
  * @author Gerson Thiago <http://www.gersonthiago.com> <https://github.com/gersonthiago/jquery.gtselect>
 **/
 
-(function($){
+;(function($){
 
 	$.fn.gtselect = function(options){
 
