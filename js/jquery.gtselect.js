@@ -24,10 +24,6 @@
 			this.select = $(el).parent('.gtSelect');
 			this.el.css('display','none');
 			
-			// change attr name
-			var attrName = this.el.attr('name');
-			this.el.attr('name',attrName+'Old');
-
 			// get options: values and texts
 			var htmlSelect = '', 
 				field = this.select.find('option'), 
@@ -51,8 +47,7 @@
 			// the new html box select
 			htmlSelect += '<p class="activeOption">'+fieldChecked.text+'</p>'+
 				'<div class="listSelect" style="'+cssHeight+'"><ul>'+fields+'</ul></div>'+
-				'<span class="arrow arrowDown">Down</span>'+
-				'<input type="hidden" name="'+attrName+'" value="'+fieldChecked.value+'" />';
+				'<span class="arrow arrowDown">Down</span>';
 			
 			this.select.css({'width':this.options.width+'px','zIndex':zIndex}).append(htmlSelect);
 			
@@ -64,19 +59,20 @@
 		// add events for each gtselect
 		boxGtSelect.prototype.appendEvents = function(){
 			
-			var gtSelect = this.select,
+			var self = this.select,
 				opts = this.options,
 				timeGtSelect = '';
 
 			var changeValue = function(value, text){
-				gtSelect.find('select option[value="'+value+'"]').attr('selected','selected');
-				gtSelect.find('.activeOption').text(text);
+				self.find('select option').attr('selected',false);
+				self.find('select option[value="'+value+'"]').attr('selected',true);
+				self.find('.activeOption').text(text);
 				if( opts.change !== undefined ){
-					opts.change(value, text, gtSelect);
+					opts.change(value, text, self);
 				}
 			}
 			
-			gtSelect.bind('mouseenter mouseleave click', function(e){
+			self.bind('mouseenter mouseleave click', function(e){
 				var target = $(this), status = target.attr('data-status');
 				if(e.type=='click'){
 					if(status=='disabled'){
@@ -101,9 +97,9 @@
 				} else if(e.type=='mouseenter'){
 					if(status=='enabled'){ clearTimeout(timeGtSelect); }
 				} else {
-					if(status=='enabled'){ 
+					if(status=='enabled'){
 						timeGtSelect = setTimeout(function(){
-							gtSelect.trigger('click');
+							self.trigger('click');
 						},1000);
 					}
 				}
@@ -116,6 +112,5 @@
 		});
 		
 	}
-	
 
 })(jQuery);
