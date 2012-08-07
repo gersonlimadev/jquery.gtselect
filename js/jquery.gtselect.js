@@ -13,7 +13,7 @@
 			height : undefined,
 			linkRedirect : false,
 			change : undefined
-		}, zIndex = 100;
+		}, zIndex = 100, count = 0;
 
 		function boxGtSelect(el, options){
 			this.el = $(el);
@@ -23,11 +23,12 @@
 			this.el.wrap('<div class="gtSelect" data-status="disabled" />');
 			this.select = $(el).parent('.gtSelect');
 			this.el.css('display','none');
-			
+
 			// get options: values and texts
 			var htmlSelect = '', 
 				field = this.select.find('option'), 
-				fields = '', 
+				fields = '',
+				idClass = (typeof this.el.attr('id') === 'string') ? 'select_'+this.el.attr('id') : 'select'+count;
 				cssHeight = '',
 				width = this.el.width(),
 				fieldChecked = {
@@ -35,7 +36,7 @@
 					text : $(field[0]).text()
 				};
 
-			for(var i=0; i<field.length; i++){
+			for(var i = 0; i < field.length; i++){
 				if($(field[i]).attr('selected') == 'selected'){ 
 					fieldChecked = {
 						value: $(field[i]).val(),
@@ -49,16 +50,17 @@
 				var cssHeight = ' height:'+this.options.height+'px; overflow-x:hidden; overflow-y:auto;';
 			}
 
+			// if options width undefined, get width of the element
+			if( typeof this.options.width === 'undefined' ){
+				this.options.width = width;
+			}
+
 			// the new html box select
 			htmlSelect += '<p class="activeOption">'+fieldChecked.text+'</p>'+
 				'<div class="listSelect" style="'+cssHeight+'"><ul>'+fields+'</ul></div>'+
 				'<span class="arrow arrowDown">Down</span>';
 			
-			// if options width undefined, get width of the element
-			if( typeof this.options.width === 'undefined' ){
-				this.options.width = width;
-			}
-			this.select.css({
+			this.select.addClass(idClass).css({
 				'width': this.options.width+'px',
 				'zIndex':zIndex
 			}).append(htmlSelect);
@@ -66,6 +68,7 @@
 			this.appendEvents();
 
 			zIndex--;
+			count++;
 		}
 
 		// add events for each gtselect
