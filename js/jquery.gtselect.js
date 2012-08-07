@@ -9,8 +9,8 @@
 
 		var defaults = {
 			speed : 200,
-			width : 300,
-			height : null,
+			width : undefined,
+			height : undefined,
 			linkRedirect : false,
 			change : undefined
 		}, zIndex = 100;
@@ -28,19 +28,24 @@
 			var htmlSelect = '', 
 				field = this.select.find('option'), 
 				fields = '', 
+				cssHeight = '',
+				width = this.el.width(),
 				fieldChecked = {
 					value : $(field[0]).attr('value'),
 					text : $(field[0]).text()
 				};
 
 			for(var i=0; i<field.length; i++){
-				if($(field[i]).attr('selected')=='selected'){ fieldChecked = {value:$(field[i]).val(),text:$(field[i]).text()}; }
+				if($(field[i]).attr('selected') == 'selected'){ 
+					fieldChecked = {
+						value: $(field[i]).val(),
+						text: $(field[i]).text()}; 
+					}
 				fields += '<li data-val="'+$(field[i]).val()+'">'+$(field[i]).text()+'</li>';
 			}
 
 			// verify height
-			var cssHeight = '';
-			if(!(this.options.height==null)){
+			if(typeof this.options.height !== 'undefined'){
 				var cssHeight = ' height:'+this.options.height+'px; overflow-x:hidden; overflow-y:auto;';
 			}
 
@@ -49,7 +54,14 @@
 				'<div class="listSelect" style="'+cssHeight+'"><ul>'+fields+'</ul></div>'+
 				'<span class="arrow arrowDown">Down</span>';
 			
-			this.select.css({'width':this.options.width+'px','zIndex':zIndex}).append(htmlSelect);
+			// if options width undefined, get width of the element
+			if( typeof this.options.width === 'undefined' ){
+				this.options.width = width;
+			}
+			this.select.css({
+				'width': this.options.width+'px',
+				'zIndex':zIndex
+			}).append(htmlSelect);
 			
 			this.appendEvents();
 
