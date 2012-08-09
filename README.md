@@ -7,4 +7,4 @@ No mystery, no secret.
 
 -----------------
 
-[More Info](http://www.gersonthiago.com/labs/jquery-gtselect/)
+[More Info](http://gersonthiago.github.com/jquery.gtselect/)
