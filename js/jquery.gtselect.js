@@ -24,6 +24,9 @@
 			this.select = $(el).parent('.gtSelect');
 			this.el.css('display','none');
 
+			// verify if select is "disabled"
+			this.selectDisabled = (typeof this.el.attr('disabled') !== 'undefined') ? true : false;
+
 			// get options: values and texts
 			var htmlSelect = '', 
 				field = this.select.find('option'), 
@@ -65,7 +68,9 @@
 				'zIndex':zIndex
 			}).append(htmlSelect);
 			
-			this.appendEvents();
+			if( !this.selectDisabled ){
+				this.appendEvents();
+			}
 
 			zIndex--;
 			count++;
@@ -74,6 +79,7 @@
 		// add events for each gtselect
 		boxGtSelect.prototype.appendEvents = function(){
 			
+
 			var self = this.select,
 				opts = this.options,
 				timeGtSelect = '';
@@ -85,8 +91,10 @@
 				if( opts.change !== undefined ){
 					opts.change(value, text, self);
 				}
+				self.find('select').trigger('change');
 			}
 			
+
 			self.bind('mouseenter mouseleave click', function(e){
 				var target = $(this), status = target.attr('data-status');
 				if(e.type=='click'){
@@ -119,7 +127,7 @@
 					}
 				}
 			});
-
+			
 		}
 
 		return this.each(function(){
