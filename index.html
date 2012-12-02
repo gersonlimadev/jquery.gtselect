@@ -39,19 +39,19 @@
 				<h2>See the example:</h2>
 				<select id="favorite_place" name="favorite_place">
 					<option value="">Please select your favorite place</option>
-					<option value="sao-paulo">São Paulo</option>
-					<option value="rio-de-janeiro">Rio de Janeiro</option>
-					<option value="recife">Recife</option>
-					<option value="porto-alegre">Porto Alegre</option>
 					<option value="acre">Acre</option>
-					<option value="santa-catarina">Santa Catarina</option>
-					<option value="belo-horizonte">Belo Horizonte</option>
-					<option value="sergipe">Sergipe</option>
-					<option value="bahia">Bahia</option>
-					<option value="piaui">Piauí</option>
 					<option value="amazonas">Amazonas</option>
-					<option value="roraima">Roraima</option>
+					<option value="bahia">Bahia</option>
+					<option value="belo-horizonte">Belo Horizonte</option>
 					<option value="maranhao">Maranhão</option>
+					<option value="piaui">Piauí</option>
+					<option value="porto-alegre">Porto Alegre</option>
+					<option value="recife">Recife</option>
+					<option value="rio-de-janeiro">Rio de Janeiro</option>
+					<option value="roraima">Roraima</option>
+					<option value="sao-paulo">São Paulo</option>
+					<option value="santa-catarina">Santa Catarina</option>
+					<option value="sergipe">Sergipe</option>
 				</select>
 
 			</form>
@@ -129,7 +129,12 @@ $('select').gtselect({
 		window.onload = function(){ sh_highlightDocument(); }
 
 		$(document).ready(function(){
-			$('select').gtselect({speed:300,height:100,linkRedirect:false});
+			$('select').gtselect({
+				speed : 300,
+				height : 100,
+				linkRedirect : false,
+				effect : 'fade'
+			});
 		});
 		
 		var _gaq = _gaq || [];
