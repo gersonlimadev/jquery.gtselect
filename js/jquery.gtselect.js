@@ -156,17 +156,17 @@
 						target.attr('data-status','waiting');
 						
 						if(opts.effect == 'slide') {
-							
+
 							target.find('.listSelect').slideUp(opts.speed, function() {
-                                target.attr('data-status','disabled');
-                            });
+								target.attr('data-status','disabled');
+							});
 
 						} else if(opts.effect == 'fade') {
-							
+
 							target.find('.listSelect').fadeOut(opts.speed, function() {
-                                target.attr('data-status','disabled');
-                            });
-                            
+								target.attr('data-status','disabled');
+							});
+
 						}
 
 						self.find('li').css({ opacity : 1 });
