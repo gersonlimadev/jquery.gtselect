@@ -5,7 +5,7 @@
 
 ;(function($){
 
-	$.fn.gtselect = function(options){
+	$.fn.gtselect = function(options) {
 
 		var defaults = {
 			speed : 200,
@@ -16,7 +16,7 @@
 			effect : 'slide'
 		}, zIndex = 100, count = 0;
 
-		function boxGtSelect(el, options){
+		function boxGtSelect(el, options) {
 			this.el = $(el);
 			this.options = $.extend({}, defaults, options);
 
@@ -59,38 +59,38 @@
 			}
 
 			// verify height
-			if(typeof this.options.height !== 'undefined'){
+			if(typeof this.options.height !== 'undefined') {
 				cssHeight = 'style="max-height:'+ this.options.height +'px;" data-scroll="true"';
 			}
 
 			// if options width undefined, get width of the element
-			if( typeof this.options.width === 'undefined' ){
+			if( typeof this.options.width === 'undefined' ) {
 				this.options.width = width;
 			}
 
 			// the new html box select
 			htmlSelect += '<span class="bg"></span>';
 			htmlSelect += '<p class="activeOption">'+ fieldChecked.text +'</p>';
-            htmlSelect += '<div class="listSelect" '+ cssHeight +'>';
-                
-                if( cssHeight !== '' ){ 
-                	htmlSelect += '<div class="scroll" style="max-height:'+ this.options.height +'px; overflow-x:hidden; overflow-y:auto;">'; 
-                }
-                    
-                    htmlSelect += '<ul>'+ fields +'</ul>';
-                
-                if( cssHeight !== '' ){ 
-                	htmlSelect += '</div>'; 
-                }
+			htmlSelect += '<div class="listSelect" '+ cssHeight +'>';
 
-            htmlSelect += '</div>';
-            htmlSelect += '<span class="arrow arrowDown">Down</span>';
+			if( cssHeight !== '' ){ 
+				htmlSelect += '<div class="scroll" style="max-height:'+ this.options.height +'px; overflow-x:hidden; overflow-y:auto;">'; 
+			}
+
+			htmlSelect += '<ul>'+ fields +'</ul>';
+
+			if( cssHeight !== '' ){ 
+				htmlSelect += '</div>'; 
+			}
+
+			htmlSelect += '</div>';
+			htmlSelect += '<span class="arrow arrowDown">Down</span>';
 
 
 			
 			this.select.addClass(idClass).css({
 				'width': this.options.width+'px',
-				'zIndex':zIndex
+				'zIndex': zIndex
 			}).append(htmlSelect);
 			
 			if( !this.selectDisabled ){
@@ -102,14 +102,14 @@
 		}
 
 		// add events for each gtselect
-		boxGtSelect.prototype.appendEvents = function(){
+		boxGtSelect.prototype.appendEvents = function() {
 			
 
 			var self = this.select,
 				opts = this.options,
 				timeGtSelect = '';
 
-			var changeValue = function(value, text){
+			var changeValue = function(value, text) {
 				
 				self.find('select option').attr('selected',false);
 				self.find('select option[value="'+value+'"]').attr('selected',true);
@@ -124,7 +124,7 @@
 			}
 			
 
-			self.bind('mouseenter mouseleave click', function(e){
+			self.bind('mouseenter mouseleave click', function(e) {
 				
 				var target = $(this), 
 					status = target.attr('data-status');
@@ -154,15 +154,19 @@
 
 						self.find('li').css({ opacity : 1 });
 						
-						if(e.target.nodeName.toLowerCase() == 'li'){
+						if(e.target.nodeName.toLowerCase() == 'li') {
+							
 							// if linkRedirect is true, redirect
 							if(opts.linkRedirect){
-								if(e.target.getAttribute('data-val')!=""){
+								
+								if(e.target.getAttribute('data-val') != "") {
 									location.href = e.target.getAttribute('data-val');
 								}
+
 							} else {
 								changeValue($(e.target).attr('data-val'),$(e.target).text());
 							}
+
 						}
 
 						target.attr('data-status','disabled');
@@ -171,7 +175,7 @@
 
 				} else if(e.type == 'mouseenter') {
 					
-					if(status == 'enabled'){ 
+					if(status == 'enabled') { 
 						clearTimeout(timeGtSelect); 
 					}
 
@@ -195,7 +199,7 @@
 
 				self.find('li').css({ opacity : 1 });
 				
-				switch( key ){
+				switch( key ) {
 					case 48 : letter = "0"; break;
 						case 96 : letter = "0"; break;
 					case 49 : letter = "1"; break;
@@ -245,7 +249,7 @@
 				}
 
 				// verify if existing letter
-				self.find('li').each(function(i){
+				self.find('li').each(function(i) {
 					
 					var li = $(this),
 						top = 0;
@@ -275,13 +279,13 @@
 
 				// if count 1
 				// select the only option
-				if(list.length == 1){
+				if(list.length == 1) {
 					
 					self.find('select option').attr('selected',false);
 					list[0].el.attr('selected',true);
 					self.find('li[data-val='+ list[0].val +']').trigger('click');
 
-				} else if(list.length > 1){
+				} else if(list.length > 1) {
 
 					if(self.find('.scroll').length > 0) {
 						self.find('.scroll').animate({ scrollTop : list[0].top }, opts.speed);
@@ -313,7 +317,7 @@
 			
 		}
 
-		return this.each(function(){
+		return this.each(function() {
 			new boxGtSelect(this, options);
 		});
 		
