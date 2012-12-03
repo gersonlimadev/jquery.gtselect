@@ -93,7 +93,7 @@
 				'zIndex': zIndex
 			}).append(htmlSelect);
 			
-			if( !this.selectDisabled ){
+			if( !this.selectDisabled ) {
 				this.appendEvents();
 			}
 
@@ -134,22 +134,39 @@
 					if(status == 'disabled') {
 						
 						target.find('.arrow').removeClass('arrowDown').addClass('arrowUp').text('Up');
-						target.attr('data-status','enabled');
+						target.attr('data-status','waiting');
 
 						if(opts.effect == 'slide') {
-							target.find('.listSelect').slideDown(opts.speed);
+							
+							target.find('.listSelect').slideDown(opts.speed, function() {
+								target.attr('data-status','enabled');
+							});
+
 						} else if(opts.effect == 'fade') {
-							target.find('.listSelect').fadeIn(opts.speed);
+
+							target.find('.listSelect').fadeIn(opts.speed, function() {
+								target.attr('data-status','enabled');
+							});
+
 						}
 
 					} else {
 						
 						target.find('.arrow').removeClass('arrowUp').addClass('arrowDown').text('Down');
+						target.attr('data-status','waiting');
 						
 						if(opts.effect == 'slide') {
-							target.find('.listSelect').slideUp(opts.speed);
+							
+							target.find('.listSelect').slideUp(opts.speed, function() {
+                                target.attr('data-status','disabled');
+                            });
+
 						} else if(opts.effect == 'fade') {
-							target.find('.listSelect').fadeOut(opts.speed);
+							
+							target.find('.listSelect').fadeOut(opts.speed, function() {
+                                target.attr('data-status','disabled');
+                            });
+                            
 						}
 
 						self.find('li').css({ opacity : 1 });
@@ -169,7 +186,6 @@
 
 						}
 
-						target.attr('data-status','disabled');
 
 					}
 
