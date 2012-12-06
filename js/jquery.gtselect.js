@@ -17,6 +17,7 @@
 		}, zIndex = 100, count = 0;
 
 		function boxGtSelect(el, options) {
+			
 			this.el = $(el);
 			this.options = $.extend({}, defaults, options);
 
@@ -104,10 +105,11 @@
 		// add events for each gtselect
 		boxGtSelect.prototype.appendEvents = function() {
 			
-
 			var self = this.select,
 				opts = this.options,
-				timeGtSelect = '';
+				timeGtSelect = '',
+				letterSelected = '',
+				timerLetter = undefined;
 
 			var changeValue = function(value, text) {
 				
@@ -213,7 +215,9 @@
 					letter = '',
 					list = [];
 
-				self.find('li').css({ opacity : 1 });
+				if(typeof timerLetter !== 'undefined') {
+					clearTimeout( timerLetter );
+				}
 				
 				switch( key ) {
 					case 48 : letter = "0"; break;
@@ -264,13 +268,25 @@
 					case 90 : letter = "z"; break;
 				}
 
+				if(letter !== '') {
+
+					letterSelected += letter;
+
+					timerLetter = setTimeout(function() {
+						letterSelected = '';
+						self.find('li').css({ opacity : 1 });
+					}, 1500);
+
+				}
+
 				// verify if existing letter
 				self.find('li').each(function(i) {
 					
 					var li = $(this),
 						top = 0;
 
-					if(li.text().substr(0,1).toLowerCase() == letter && li.attr('data-val') !== '') {
+					// compare the letters with options
+					if(li.text().substr(0,letterSelected.length).toLowerCase() == letterSelected && li.attr('data-val') !== '') {
 						
 						if(self.find('.scroll').length > 0) {
 							top = i * (li.height() + parseInt(li.css('paddingTop').replace('px','')) + parseInt(li.css('paddingTop').replace('px','')) );
@@ -315,13 +331,14 @@
 				
 			}
 
+			// get keydown event
 			$('html').bind('keydown', function(e) { 
 				if(self.attr('data-status') == 'enabled') {
 					execKeyDown(e);
 				}
 			});
 
-
+			// get any click
 			$('html').bind('click', function(e) {
 				if($(e.target).parents('.gtSelect').length == 0){
 					if(self.attr('data-status') == 'enabled') {
