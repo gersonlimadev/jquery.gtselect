@@ -16,91 +16,121 @@
 			effect : 'slide'
 		}, zIndex = 100, count = 0;
 
-		function boxGtSelect(el, options) {
+
+		var defaultsDisabled = {
+			disabled : undefined
+		};
+
+		function boxGtSelect(el, options, actionDisabled) {
 			
 			this.el = $(el);
-			this.options = $.extend({}, defaults, options);
 
-			// create element boxSelect
-			this.el.wrap('<div class="gtSelect" data-status="disabled" />');
-			this.select = $(el).parent('.gtSelect');
-			this.el.css('display','none');
+			// to disable the "select" after it has been applied
+			if(actionDisabled) {
 
-			// verify if select is "disabled"
-			this.selectDisabled = (typeof this.el.attr('disabled') !== 'undefined') ? true : false;
+				this.options = $.extend({}, defaultsDisabled, options);
 
-			// get options: values and texts
-			var htmlSelect = '', 
-				field = this.select.find('option'), 
-				fields = '',
-				cssHeight = '',
-				liTop = 0,
-				idClass = (typeof this.el.attr('id') === 'string') ? 'select_' + this.el.attr('id') : 'select'+count;
-				width = this.el.width(),
-				fieldChecked = {
-					value : $(field[0]).attr('value'),
-					text : $(field[0]).text()
-				};
+				this.select = $(el).parent('.gtSelect');
 
-			// get list of the <option> and create list 
-			for(var i = 0; i < field.length; i++){
-				
-				// get field selected
-				if($(field[i]).attr('selected') == 'selected') { 
+				if(typeof this.options.disabled !== 'undefined') {
 					
-					fieldChecked = {
-						value : $(field[i]).val(),
-						text : $(field[i]).text()
+					if(this.options.disabled) {
+						this.select.attr('data-status','boxdisabled').addClass('disabled');
+					} else {
+						this.select.attr('data-status','disabled').removeClass('disabled');
 					}
+				}
+
+			} else {
+
+				this.options = $.extend({}, defaults, options);
+
+				// create element boxSelect
+				this.el.wrap('<div class="gtSelect" data-status="disabled" />');
+				this.select = $(el).parent('.gtSelect');
+
+				this.el.css('display','none');
+
+				// verify if select is "disabled"
+				this.selectDisabled = (typeof this.el.attr('disabled') !== 'undefined') ? true : false;
+
+				// get options: values and texts
+				var htmlSelect = '', 
+					field = this.select.find('option'), 
+					fields = '',
+					cssHeight = '',
+					liTop = 0,
+					idClass = (typeof this.el.attr('id') === 'string') ? 'select_' + this.el.attr('id') : 'select'+count;
+					width = this.el.width(),
+					fieldChecked = {
+						value : $(field[0]).attr('value'),
+						text : $(field[0]).text()
+					};
+
+				// get list of the <option> and create list 
+				for(var i = 0; i < field.length; i++){
+					
+					// get field selected
+					if($(field[i]).attr('selected') == 'selected') { 
+						
+						fieldChecked = {
+							value : $(field[i]).val(),
+							text : $(field[i]).text()
+						}
+
+					}
+
+					fields += '<li data-val="'+ $(field[i]).val() +'">'+ $(field[i]).text() +'</li>';
 
 				}
 
-				fields += '<li data-val="'+ $(field[i]).val() +'">'+ $(field[i]).text() +'</li>';
+				// verify height
+				if(typeof this.options.height !== 'undefined') {
+					cssHeight = 'style="max-height:'+ this.options.height +'px;" data-scroll="true"';
+				}
 
-			}
+				// if options width undefined, get width of the element
+				if( typeof this.options.width === 'undefined' ) {
+					this.options.width = width;
+				}
 
-			// verify height
-			if(typeof this.options.height !== 'undefined') {
-				cssHeight = 'style="max-height:'+ this.options.height +'px;" data-scroll="true"';
-			}
+				// the new html box select
+				htmlSelect += '<span class="bg"></span>';
+				htmlSelect += '<p class="activeOption">'+ fieldChecked.text +'</p>';
+				htmlSelect += '<div class="listSelect" '+ cssHeight +'>';
 
-			// if options width undefined, get width of the element
-			if( typeof this.options.width === 'undefined' ) {
-				this.options.width = width;
-			}
+				if( cssHeight !== '' ){ 
+					htmlSelect += '<div class="scroll" style="max-height:'+ this.options.height +'px; overflow-x:hidden; overflow-y:auto;">'; 
+				}
 
-			// the new html box select
-			htmlSelect += '<span class="bg"></span>';
-			htmlSelect += '<p class="activeOption">'+ fieldChecked.text +'</p>';
-			htmlSelect += '<div class="listSelect" '+ cssHeight +'>';
+				htmlSelect += '<ul>'+ fields +'</ul>';
 
-			if( cssHeight !== '' ){ 
-				htmlSelect += '<div class="scroll" style="max-height:'+ this.options.height +'px; overflow-x:hidden; overflow-y:auto;">'; 
-			}
+				if( cssHeight !== '' ){ 
+					htmlSelect += '</div>'; 
+				}
 
-			htmlSelect += '<ul>'+ fields +'</ul>';
-
-			if( cssHeight !== '' ){ 
-				htmlSelect += '</div>'; 
-			}
-
-			htmlSelect += '</div>';
-			htmlSelect += '<span class="arrow arrowDown">Down</span>';
+				htmlSelect += '</div>';
+				htmlSelect += '<span class="arrow arrowDown">Down</span>';
 
 
-			
-			this.select.addClass(idClass).css({
-				'width': this.options.width+'px',
-				'zIndex': zIndex
-			}).append(htmlSelect);
-			
-			if( !this.selectDisabled ) {
+				
+				this.select.addClass(idClass).css({
+					'width': this.options.width+'px',
+					'zIndex': zIndex
+				}).append(htmlSelect);
+				
+				if( this.selectDisabled ) {
+					this.select.attr('data-status', 'boxdisabled').addClass('disabled');
+				}
+
 				this.appendEvents();
-			}
 
-			zIndex--;
-			count++;
+				zIndex--;
+				count++;
+
+			}
 		}
+
 
 		// add events for each gtselect
 		boxGtSelect.prototype.appendEvents = function() {
@@ -131,81 +161,86 @@
 				var target = $(this), 
 					status = target.attr('data-status');
 
-				if(e.type == 'click') {
-					
-					if(status == 'disabled') {
+				if(target.attr('data-status') !== 'boxdisabled') {
+
+					if(e.type == 'click') {
 						
-						target.find('.arrow').removeClass('arrowDown').addClass('arrowUp').text('Up');
-						target.attr('data-status','waiting');
-
-						if(opts.effect == 'slide') {
+						if(status == 'disabled') {
 							
-							target.find('.listSelect').slideDown(opts.speed, function() {
-								target.attr('data-status','enabled');
-							});
+							target.find('.arrow').removeClass('arrowDown').addClass('arrowUp').text('Up');
+							target.attr('data-status','waiting');
 
-						} else if(opts.effect == 'fade') {
+							if(opts.effect == 'slide') {
+								
+								target.find('.listSelect').slideDown(opts.speed, function() {
+									target.attr('data-status','enabled');
+								});
 
-							target.find('.listSelect').fadeIn(opts.speed, function() {
-								target.attr('data-status','enabled');
-							});
+							} else if(opts.effect == 'fade') {
 
+								target.find('.listSelect').fadeIn(opts.speed, function() {
+									target.attr('data-status','enabled');
+								});
+
+							}
+
+						} else {
+							
+							target.find('.arrow').removeClass('arrowUp').addClass('arrowDown').text('Down');
+							target.attr('data-status','waiting');
+							
+							if(opts.effect == 'slide') {
+
+								target.find('.listSelect').slideUp(opts.speed, function() {
+									target.attr('data-status','disabled');
+								});
+
+							} else if(opts.effect == 'fade') {
+
+								target.find('.listSelect').fadeOut(opts.speed, function() {
+									target.attr('data-status','disabled');
+								});
+
+							}
+
+							self.find('li').css({ opacity : 1 });
+							
+							if(e.target.nodeName.toLowerCase() == 'li') {
+								
+								// if linkRedirect is true, redirect
+								if(opts.linkRedirect){
+									
+									if(e.target.getAttribute('data-val') != "") {
+										location.href = e.target.getAttribute('data-val');
+									}
+
+								} else {
+									changeValue($(e.target).attr('data-val'),$(e.target).text());
+								}
+
+							}
+
+
+						}
+
+					} else if(e.type == 'mouseenter') {
+						
+						if(status == 'enabled') { 
+							clearTimeout(timeGtSelect); 
 						}
 
 					} else {
-						
-						target.find('.arrow').removeClass('arrowUp').addClass('arrowDown').text('Down');
-						target.attr('data-status','waiting');
-						
-						if(opts.effect == 'slide') {
-
-							target.find('.listSelect').slideUp(opts.speed, function() {
-								target.attr('data-status','disabled');
-							});
-
-						} else if(opts.effect == 'fade') {
-
-							target.find('.listSelect').fadeOut(opts.speed, function() {
-								target.attr('data-status','disabled');
-							});
-
-						}
-
-						self.find('li').css({ opacity : 1 });
-						
-						if(e.target.nodeName.toLowerCase() == 'li') {
+						if(status == 'enabled') {
 							
-							// if linkRedirect is true, redirect
-							if(opts.linkRedirect){
-								
-								if(e.target.getAttribute('data-val') != "") {
-									location.href = e.target.getAttribute('data-val');
-								}
-
-							} else {
-								changeValue($(e.target).attr('data-val'),$(e.target).text());
-							}
+							timeGtSelect = setTimeout(function() {
+								self.trigger('click');
+							},1000);
 
 						}
-
-
 					}
 
-				} else if(e.type == 'mouseenter') {
-					
-					if(status == 'enabled') { 
-						clearTimeout(timeGtSelect); 
-					}
-
-				} else {
-					if(status == 'enabled') {
-						
-						timeGtSelect = setTimeout(function() {
-							self.trigger('click');
-						},1000);
-
-					}
 				}
+
 			});
 
 			// get key
@@ -351,7 +386,11 @@
 		}
 
 		return this.each(function() {
-			new boxGtSelect(this, options);
+			if($(this).parents('.gtSelect').length == 0) {
+				new boxGtSelect(this, options);
+			} else {
+				boxGtSelect(this, options, true);
+			}
 		});
 		
 	}
