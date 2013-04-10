@@ -94,8 +94,7 @@ $('select').gtselect({
 	width : 300,		// width box select
 	height: null,		// height box select
 	linkRedirect : false, 	// if true, redirect page using value of the selected option tag
-	change : function(value, text, ui){  },	// callback function to change event OR get event change of original select.
-	effect : 'fade' // slide or fade
+	effect : 'fade' 	// none, slide or fade
 });
 </pre>
 				<br/>
@@ -141,20 +140,10 @@ $('select').gtselect({
 				speed : 300,
 				height : 100,
 				linkRedirect : false,
-				effect : 'fade'
+				effect : 'none'
 			});
 		});
 		
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-10036034-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-		  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-
 	</script>
 </body>
 </html>
