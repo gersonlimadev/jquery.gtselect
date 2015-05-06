@@ -8,3 +8,7 @@ No mystery, no secret.
 -----------------
 
 [More Info](http://gersonthiago.github.com/jquery.gtselect/)
+
+## License
+
+[MIT License](http://gersonthiago.mit-license.org/) © Gerson Thiago
